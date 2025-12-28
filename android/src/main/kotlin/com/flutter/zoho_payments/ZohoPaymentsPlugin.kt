@@ -1,4 +1,4 @@
-package com.yourcompany.zoho_payments
+package com.flutter.zoho_payments
 
 import android.app.Activity
 import android.content.Context
@@ -10,6 +10,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
+import io.flutter.plugin.common.PluginRegistry
 import com.zoho.paymentsdk.CheckoutSDK
 import com.zoho.paymentsdk.model.CheckoutOptions
 import com.zoho.paymentsdk.model.PaymentMethod
@@ -17,10 +18,15 @@ import com.zoho.paymentsdk.ZohoPayCheckoutCallback
 import com.zoho.paymentsdk.ZohoPayDomain
 import com.zoho.paymentsdk.ZohoPaymentsEnvironment
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+
 /** ZohoPaymentsPlugin */
-class ZohoPaymentsPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
+class ZohoPaymentsPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, LifecycleObserver {
   private lateinit var channel : MethodChannel
   private var activity: Activity? = null
+  private var activityBinding: ActivityPluginBinding? = null
   private var pendingResult: Result? = null
   private var isPaymentInProgress = false
   private var context: Context? = null
@@ -136,17 +142,28 @@ class ZohoPaymentsPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     activity = binding.activity
+    activityBinding = binding
+    
+    // Add lifecycle observer to handle resume events
+    if (activity is androidx.lifecycle.LifecycleOwner) {
+      (activity as androidx.lifecycle.LifecycleOwner).lifecycle.addObserver(this)
+    }
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
-    activity = null
+    onDetachedFromActivity()
   }
 
   override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-    activity = binding.activity
+    onAttachedToActivity(binding)
   }
 
   override fun onDetachedFromActivity() {
+    // Remove lifecycle observer
+    if (activity is androidx.lifecycle.LifecycleOwner) {
+      (activity as androidx.lifecycle.LifecycleOwner).lifecycle.removeObserver(this)
+    }
+    
     // Handle payment cancellation when activity is detached
     if (isPaymentInProgress && pendingResult != null) {
       val resultMap = hashMapOf<String, Any?>(
@@ -157,6 +174,30 @@ class ZohoPaymentsPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
       pendingResult = null
       isPaymentInProgress = false
     }
+    
     activity = null
+    activityBinding = null
+  }
+
+  @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+  fun onActivityResumed() {
+    // Check if payment was in progress and handle back gesture
+    if (isPaymentInProgress && pendingResult != null) {
+      // Delay check to ensure Zoho SDK had time to process the result
+      activity?.runOnUiThread {
+        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+          // If still in progress after delay, it means user pressed back
+          if (isPaymentInProgress && pendingResult != null) {
+            val resultMap = hashMapOf<String, Any?>(
+              "status" to "cancelled",
+              "errorMessage" to "Payment cancelled by user"
+            )
+            pendingResult?.success(resultMap)
+            pendingResult = null
+            isPaymentInProgress = false
+          }
+        }, 500) // 500ms delay to let SDK callbacks fire first
+      }
+    }
   }
 }

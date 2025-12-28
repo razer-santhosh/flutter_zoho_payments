@@ -4,4 +4,4 @@
 -dontwarn com.zoho.paymentsdk.**
 
 # Keep plugin classes
--keep class com.yourcompany.zoho_payments.** { *; }
+-keep class com.flutter.zoho_payments.** { *; }

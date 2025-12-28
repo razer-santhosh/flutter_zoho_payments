@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.yourcompany.zoho_payments">
+  package="com.flutter.zoho_payments">
   
   <!-- Internet permission required by Zoho Payments SDK -->
   <uses-permission android:name="android.permission.INTERNET" />

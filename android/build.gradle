@@ -1,4 +1,4 @@
-group 'com.yourcompany.zoho_payments'
+group 'com.flutter.zoho_payments'
 version '1.0'
 
 buildscript {

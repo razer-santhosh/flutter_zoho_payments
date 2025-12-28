@@ -24,7 +24,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.yourcompany.zoho_payments
+        package: com.flutter.zoho_payments
         pluginClass: ZohoPaymentsPlugin
         dartPluginClass: ZohoPayments
 
