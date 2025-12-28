@@ -9,11 +9,9 @@ abstract class ZohoPaymentsPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static ZohoPaymentsPlatform _instance = MethodChannelZohoPayments();
+  static late ZohoPaymentsPlatform _instance;
 
   /// The default instance of [ZohoPaymentsPlatform] to use.
-  ///
-  /// Defaults to [MethodChannelZohoPayments].
   static ZohoPaymentsPlatform get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
@@ -37,6 +35,3 @@ abstract class ZohoPaymentsPlatform extends PlatformInterface {
     throw UnimplementedError('startPayment() has not been implemented.');
   }
 }
-
-/// An implementation of [ZohoPaymentsPlatform] that uses method channels.
-class MethodChannelZohoPayments extends ZohoPaymentsPlatform {}
