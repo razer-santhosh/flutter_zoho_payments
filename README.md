@@ -28,7 +28,7 @@ Add `flutter_zoho_payments` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_zoho_payments: ^0.2.2
+  flutter_zoho_payments: ^0.2.3
 ```
 
 ## Setup
@@ -45,9 +45,21 @@ android {
 }
 ```
 
-2. Add Zoho's Maven repository to your `android/build.gradle` (project level):
+2. Add Zoho's Maven repository to your `android/build.gradle` or `android/build.gradle.kts` (project level):
 
+**For Groovy (build.gradle):**
 ```gradle
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url = uri("https://maven.zohodl.com") }  // Add this line
+    }
+}
+```
+
+**For Kotlin DSL (build.gradle.kts):**
+```kotlin
 allprojects {
     repositories {
         google()

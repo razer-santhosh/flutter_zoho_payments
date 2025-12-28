@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.3 - 2024-12-28
+
+### Changed
+- Migrated all build.gradle files to Kotlin DSL (build.gradle.kts)
+- Modernized build configuration with type-safe Kotlin syntax
+- Updated documentation to support both Groovy and Kotlin DSL
+- Fixed circular import in main library file
+
 ## 0.2.2 - 2024-12-28
 
 ### Fixed
