@@ -40,6 +40,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   final _phoneController = TextEditingController();
   
   PaymentMethod _selectedPaymentMethod = PaymentMethod.upi;
+  ZohoEnvironment _selectedEnvironment = ZohoEnvironment.sandbox;
   bool _isInitialized = false;
   bool _isLoading = false;
   
@@ -141,7 +142,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           customerEmail: _emailController.text,
           customerPhone: _phoneController.text,
           paymentMethod: _selectedPaymentMethod,
-          environment: ZohoEnvironment.sandbox, // Change to .live for production
+          environment: _selectedEnvironment,
         ),
       );
 
@@ -222,6 +223,50 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         ),
                         const SizedBox(width: 8),
                         Text(_isInitialized ? 'Initialized' : 'Not initialized'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            // Environment selection
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Environment',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: RadioListTile<ZohoEnvironment>(
+                            title: const Text('Sandbox'),
+                            value: ZohoEnvironment.sandbox,
+                            groupValue: _selectedEnvironment,
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedEnvironment = value!;
+                              });
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: RadioListTile<ZohoEnvironment>(
+                            title: const Text('Live'),
+                            value: ZohoEnvironment.live,
+                            groupValue: _selectedEnvironment,
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedEnvironment = value!;
+                              });
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ],

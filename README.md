@@ -28,7 +28,7 @@ Add `zoho_payments` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  zoho_payments: ^0.1.0
+  zoho_payments: ^0.2.0
 ```
 
 ## Setup
