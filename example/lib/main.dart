@@ -38,12 +38,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
-  
+
   PaymentMethod _selectedPaymentMethod = PaymentMethod.upi;
   ZohoEnvironment _selectedEnvironment = ZohoEnvironment.sandbox;
   bool _isInitialized = false;
   bool _isLoading = false;
-  
+
   final ZohoPayments _zohoPayments = ZohoPayments();
 
   @override
@@ -56,9 +56,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
     try {
       final apiKey = dotenv.env['ZOHO_API_KEY'] ?? '';
       final accountId = dotenv.env['ZOHO_ACCOUNT_ID'] ?? '';
-      
+
       if (apiKey.isEmpty || accountId.isEmpty) {
-        _showError('Please configure ZOHO_API_KEY and ZOHO_ACCOUNT_ID in .env file');
+        _showError(
+          'Please configure ZOHO_API_KEY and ZOHO_ACCOUNT_ID in .env file',
+        );
         return;
       }
 
@@ -222,7 +224,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           color: _isInitialized ? Colors.green : Colors.red,
                         ),
                         const SizedBox(width: 8),
-                        Text(_isInitialized ? 'Initialized' : 'Not initialized'),
+                        Text(
+                          _isInitialized ? 'Initialized' : 'Not initialized',
+                        ),
                       ],
                     ),
                   ],
@@ -241,33 +245,29 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       'Environment',
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: RadioListTile<ZohoEnvironment>(
-                            title: const Text('Sandbox'),
-                            value: ZohoEnvironment.sandbox,
-                            groupValue: _selectedEnvironment,
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedEnvironment = value!;
-                              });
-                            },
+                    RadioGroup(
+                      groupValue: _selectedEnvironment,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedEnvironment = value!;
+                        });
+                      },
+                      child: const Row(
+                        children: [
+                          Expanded(
+                            child: RadioListTile<ZohoEnvironment>(
+                              title: Text('Sandbox'),
+                              value: ZohoEnvironment.sandbox,
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: RadioListTile<ZohoEnvironment>(
-                            title: const Text('Live'),
-                            value: ZohoEnvironment.live,
-                            groupValue: _selectedEnvironment,
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedEnvironment = value!;
-                              });
-                            },
+                          Expanded(
+                            child: RadioListTile<ZohoEnvironment>(
+                              title: Text('Live'),
+                              value: ZohoEnvironment.live,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -314,45 +314,35 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Payment Method',
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    const SizedBox(height: 8),
-                    RadioListTile<PaymentMethod>(
-                      title: const Text('UPI'),
-                      value: PaymentMethod.upi,
-                      groupValue: _selectedPaymentMethod,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedPaymentMethod = value!;
-                        });
-                      },
-                    ),
-                    RadioListTile<PaymentMethod>(
-                      title: const Text('Card'),
-                      value: PaymentMethod.card,
-                      groupValue: _selectedPaymentMethod,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedPaymentMethod = value!;
-                        });
-                      },
-                    ),
-                    RadioListTile<PaymentMethod>(
-                      title: const Text('Net Banking'),
-                      value: PaymentMethod.netBanking,
-                      groupValue: _selectedPaymentMethod,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedPaymentMethod = value!;
-                        });
-                      },
-                    ),
-                  ],
+                child: RadioGroup(
+                  groupValue: _selectedPaymentMethod,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedPaymentMethod = value!;
+                    });
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Payment Method',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 8),
+                      const RadioListTile<PaymentMethod>(
+                        title: Text('UPI'),
+                        value: PaymentMethod.upi,
+                      ),
+                      const RadioListTile<PaymentMethod>(
+                        title: Text('Card'),
+                        value: PaymentMethod.card,
+                      ),
+                      const RadioListTile<PaymentMethod>(
+                        title: Text('Net Banking'),
+                        value: PaymentMethod.netBanking,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
