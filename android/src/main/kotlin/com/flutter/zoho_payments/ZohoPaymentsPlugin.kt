@@ -67,12 +67,18 @@ class ZohoPaymentsPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Lifec
         val customerEmail = call.argument<String>("customerEmail") ?: ""
         val customerPhone = call.argument<String>("customerPhone") ?: ""
         val paymentMethodString = call.argument<String>("paymentMethod")
+        val environmentString = call.argument<String>("environment") ?: "sandbox"
         
         val paymentMethod = when(paymentMethodString) {
           "card" -> PaymentMethod.CARD
           "netBanking" -> PaymentMethod.NET_BANKING
           "upi" -> PaymentMethod.UPI
           else -> null
+        }
+        
+        val environment = when(environmentString) {
+          "live" -> ZohoPaymentsEnvironment.live
+          else -> ZohoPaymentsEnvironment.sandbox
         }
 
         if (paymentSessionId == null) {
@@ -95,12 +101,11 @@ class ZohoPaymentsPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Lifec
             paymentMethod      // paymentMethod (optional)
           )
 
-          // TODO: Make domain and environment configurable
           CheckoutSDK.showCheckout(
             activity!!,
             checkoutOptions,
             ZohoPayDomain.IN,
-            ZohoPaymentsEnvironment.production, // Use production by default
+            environment,
             object : ZohoPayCheckoutCallback {
               override fun onPaymentSuccess(paymentId: String, signature: String) {
                 val resultMap = hashMapOf<String, Any?>(

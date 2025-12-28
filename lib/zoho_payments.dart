@@ -7,6 +7,7 @@ import 'src/models/payment_result.dart';
 
 export 'src/models/payment_request.dart';
 export 'src/models/payment_result.dart';
+export 'src/models/zoho_environment.dart';
 export 'src/exceptions.dart';
 
 /// Main class for interacting with Zoho Payments SDK

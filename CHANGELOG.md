@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.0 - 2024-12-28
+
+### Added
+- Environment configuration support (sandbox/live) as parameter
+- Lifecycle observer for better back button handling during payment
+- Default to sandbox environment for safety
+
+### Changed
+- Package name from com.yourcompany to com.flutter
+- Environment is now configurable per payment request
+
 ## 0.1.0 - 2024-12-28
 
 ### Initial Release
@@ -10,4 +21,3 @@
 - Comprehensive error handling and result callbacks
 - Type-safe Dart API with null safety support
 - Example application demonstrating usage
-- Production and sandbox environment support

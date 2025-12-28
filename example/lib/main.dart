@@ -141,6 +141,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           customerEmail: _emailController.text,
           customerPhone: _phoneController.text,
           paymentMethod: _selectedPaymentMethod,
+          environment: ZohoEnvironment.sandbox, // Change to .live for production
         ),
       );
 

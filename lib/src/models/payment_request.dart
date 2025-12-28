@@ -1,3 +1,5 @@
+import '../models/zoho_environment.dart';
+
 /// Represents a payment request to be processed by Zoho Payments
 class PaymentRequest {
   /// Unique session ID for the payment transaction
@@ -24,6 +26,9 @@ class PaymentRequest {
   /// Preferred payment method
   final PaymentMethod? paymentMethod;
 
+  /// Payment environment (default: sandbox)
+  final ZohoEnvironment environment;
+
   PaymentRequest({
     required this.paymentSessionId,
     required this.amount,
@@ -33,6 +38,7 @@ class PaymentRequest {
     this.customerEmail,
     this.customerPhone,
     this.paymentMethod,
+    this.environment = ZohoEnvironment.sandbox,
   });
 
   /// Converts the payment request to a map for method channel communication
@@ -46,6 +52,7 @@ class PaymentRequest {
       'customerEmail': customerEmail,
       'customerPhone': customerPhone,
       'paymentMethod': paymentMethod?.toString().split('.').last,
+      'environment': environment.toString().split('.').last,
     };
   }
 }

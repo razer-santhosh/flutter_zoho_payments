@@ -86,6 +86,7 @@ final paymentRequest = PaymentRequest(
   customerEmail: 'john@example.com',
   customerPhone: '+919876543210',
   paymentMethod: PaymentMethod.upi, // Optional: pre-select payment method
+  environment: ZohoEnvironment.sandbox, // Optional: defaults to sandbox
 );
 ```
 
@@ -150,6 +151,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           amount: 100.0,
           customerName: 'Test User',
           customerEmail: 'test@example.com',
+          environment: ZohoEnvironment.live, // Use live for production
         ),
       );
       
@@ -206,6 +208,7 @@ Represents a payment request with all necessary details.
 | customerEmail | String? | No | Customer's email |
 | customerPhone | String? | No | Customer's phone number |
 | paymentMethod | PaymentMethod? | No | Pre-selected payment method |
+| environment | ZohoEnvironment | No | Payment environment (default: sandbox) |
 
 ### PaymentResult Class
 
@@ -251,13 +254,25 @@ try {
 
 ## Testing
 
-The plugin supports both sandbox and production environments. During development, use sandbox mode:
+The plugin supports both sandbox and live environments:
 
 ```dart
-// The plugin uses production by default
-// To use sandbox, modify the Android plugin code or 
-// wait for the next version with environment configuration
+// For testing (default)
+PaymentRequest(
+  paymentSessionId: sessionId,
+  amount: 100.0,
+  environment: ZohoEnvironment.sandbox,
+)
+
+// For production
+PaymentRequest(
+  paymentSessionId: sessionId,
+  amount: 100.0,
+  environment: ZohoEnvironment.live,
+)
 ```
+
+Always test thoroughly in sandbox before switching to live environment.
 
 ## Limitations
 
