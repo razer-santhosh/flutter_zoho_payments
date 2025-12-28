@@ -1,5 +1,5 @@
-name: zoho_payments_example
-description: Demonstrates how to use the zoho_payments plugin.
+name: flutter_zoho_payments_example
+description: Demonstrates how to use the flutter_zoho_payments plugin.
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  zoho_payments:
+  flutter_zoho_payments:
     path: ../
   http: ^1.2.0
   flutter_dotenv: ^5.1.0

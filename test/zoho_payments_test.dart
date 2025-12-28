@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zoho_payments/zoho_payments.dart';
+import 'package:flutter_zoho_payments/flutter_zoho_payments.dart';
 
 void main() {
   group('ZohoPayments', () {

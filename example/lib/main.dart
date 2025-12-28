@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:zoho_payments/zoho_payments.dart';
+import 'package:flutter_zoho_payments/flutter_zoho_payments.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

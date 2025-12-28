@@ -1,4 +1,4 @@
-# Contributing to Zoho Payments Flutter Plugin
+# Contributing to Flutter Zoho Payments Plugin
 
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
@@ -24,7 +24,7 @@ Pull requests are the best way to propose changes to the codebase. We actively w
 ## Any contributions you make will be under the MIT Software License
 In short, when you submit code changes, your submissions are understood to be under the same [MIT License](LICENSE) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-## Report bugs using Github's [issues](https://github.com/razer-santhosh/zoho_payments/issues)
+## Report bugs using Github's [issues](https://github.com/razer-santhosh/flutter_zoho_payments/issues)
 We use GitHub issues to track public bugs. Report a bug by [opening a new issue](); it's that easy!
 
 ## Write bug reports with detail, background, and sample code
@@ -43,8 +43,8 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 
 1. Clone the repository
 ```bash
-git clone https://github.com/razer-santhosh/zoho_payments.git
-cd zoho_payments
+git clone https://github.com/razer-santhosh/flutter_zoho_payments.git
+cd flutter_zoho_payments
 ```
 
 2. Install dependencies
