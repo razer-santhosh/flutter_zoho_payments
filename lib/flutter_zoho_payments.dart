@@ -1,5 +1,6 @@
 library flutter_zoho_payments;
 
+import 'flutter_zoho_payments.dart';
 import 'src/zoho_payments_platform_interface.dart';
 import 'src/zoho_payments_method_channel.dart';
 
@@ -11,9 +12,9 @@ export 'src/exceptions.dart';
 /// Main class for interacting with Zoho Payments SDK
 class ZohoPayments {
   static final ZohoPayments _instance = ZohoPayments._internal();
-  
+
   factory ZohoPayments() => _instance;
-  
+
   ZohoPayments._internal() {
     ZohoPaymentsPlatform.instance = MethodChannelZohoPayments();
   }
@@ -27,11 +28,11 @@ class ZohoPayments {
   ///
   /// [apiKey] - Your Zoho Payments API key
   /// [accountId] - Your Zoho Payments account ID
-  /// 
+  ///
   /// Returns `true` if initialization is successful
-  /// 
+  ///
   /// Throws [ZohoPaymentsException] if initialization fails
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// final zohoPayments = ZohoPayments();
@@ -53,11 +54,11 @@ class ZohoPayments {
   /// Start a payment transaction
   ///
   /// [request] - The payment request containing transaction details
-  /// 
+  ///
   /// Returns a [PaymentResult] with the outcome of the transaction
-  /// 
+  ///
   /// Throws [ZohoPaymentsException] if the payment process fails
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// final result = await zohoPayments.startPayment(
@@ -70,7 +71,7 @@ class ZohoPayments {
   ///     paymentMethod: PaymentMethod.upi,
   ///   ),
   /// );
-  /// 
+  ///
   /// if (result.isSuccess) {
   ///   print('Payment successful: ${result.paymentId}');
   /// }
