@@ -75,4 +75,16 @@ class PaymentResult {
 
   /// Checks if the payment was cancelled
   bool get isCancelled => status == PaymentStatus.cancelled;
+
+  /// Converts this PaymentResult to a JSON map
+  Map<String, dynamic> toJson() {
+    return {
+      'status': status.toString().split('.').last,
+      'paymentId': paymentId,
+      'orderId': orderId,
+      'signature': signature,
+      'errorCode': errorCode,
+      'errorMessage': errorMessage,
+    };
+  }
 }
