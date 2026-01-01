@@ -2,6 +2,20 @@
 
 A Flutter plugin for integrating Zoho Payments SDK into your Flutter applications. This plugin provides a simple and secure way to accept payments through Zoho's payment gateway.
 
+## Screenshots & Demo
+
+### Demo Video
+
+[Watch Demo Video](assets/examples/1000259892.mp4)
+
+### Screenshots
+
+<p float="left">
+  <img src="assets/examples/1000259880.jpg" width="250" />
+  <img src="assets/examples/1000259881.jpg" width="250" />
+  <img src="assets/examples/1000259891.jpg" width="250" />
+</p>
+
 ## Features
 
 - ✅ Easy integration with Zoho Payments SDK
@@ -28,7 +42,7 @@ Add `flutter_zoho_payments` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_zoho_payments: ^0.2.5
+  flutter_zoho_payments: ^0.2.6
 ```
 
 ## Setup
@@ -132,15 +146,6 @@ try {
   print('Payment error: ${e.message}');
 }
 ```
-
-## Screenshots & Demo
-
-### Demo Video
-
-https://github.com/user-attachments/assets/1000259892
-
-### Screenshots
-<img src="assets/examples/1000259880.jpg" width="250" alt="Payment Screen" /> <img src="assets/examples/1000259881.jpg" width="250" alt="Payment Methods" /> <img src="assets/examples/1000259891.jpg" width="250" alt="Payment Success" />
 
 ## Complete Example
 
