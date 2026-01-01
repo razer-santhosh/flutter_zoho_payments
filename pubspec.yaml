@@ -1,6 +1,6 @@
 name: flutter_zoho_payments
 description: A Flutter plugin for integrating Zoho Payments SDK. Currently supports Android platform with payment processing, UPI, card, and net banking payment methods.
-version: 0.2.5
+version: 0.2.6
 homepage: https://github.com/razer-santhosh/flutter_zoho_payments
 repository: https://github.com/razer-santhosh/flutter_zoho_payments
 issue_tracker: https://github.com/razer-santhosh/flutter_zoho_payments/issues

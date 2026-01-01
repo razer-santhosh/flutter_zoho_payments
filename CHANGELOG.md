@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.6 - 2026-01-01
+
+### Added
+- Added demo video and screenshots to README for better documentation
+- Enhanced visual documentation with example images
+
 ## 0.2.5 - 2026-01-01
 
 ### Changed
