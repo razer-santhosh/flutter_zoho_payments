@@ -284,7 +284,7 @@ The plugin supports both sandbox and live environments:
 // For testing (default)
 PaymentRequest(
   paymentSessionId: sessionId,
-  amount: 100.0,
+  amount: 100.0, // Note: Sandbox supports max ₹500
   environment: ZohoEnvironment.sandbox,
 )
 
@@ -296,6 +296,8 @@ PaymentRequest(
 )
 ```
 
+⚠️ **Important**: The sandbox environment currently has a payment limit of ₹500. Ensure your test transactions don't exceed this amount when using sandbox mode.
+
 Always test thoroughly in sandbox before switching to live environment.
 
 ## Limitations
@@ -303,6 +305,7 @@ Always test thoroughly in sandbox before switching to live environment.
 - Currently supports Android only (iOS support coming soon)
 - Payment UI customization is limited to Zoho's provided options
 - Requires minimum Android SDK 26 (Android 8.0)
+- **Sandbox Environment Payment Limit**: Zoho Payments sandbox environment currently supports transactions only up to ₹500 (INR). This limit is enforced by Zoho and may change in the future. For testing larger amounts, you'll need to use the production environment with real payment credentials.
 
 ## Contributing
 
