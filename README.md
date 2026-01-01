@@ -28,7 +28,7 @@ Add `flutter_zoho_payments` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_zoho_payments: ^0.2.4
+  flutter_zoho_payments: ^0.2.5
 ```
 
 ## Setup

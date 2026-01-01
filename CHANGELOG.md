@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.5 - 2026-01-01
+
+### Changed
+- Updated version to 0.2.5
+
 ## 0.2.4 - 2026-01-01
 
 ### Fixed
