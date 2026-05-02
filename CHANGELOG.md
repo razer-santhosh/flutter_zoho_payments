@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0 - 2026-05-02
+
+### Added
+- iOS support (iOS 15+) via the native ZohoPayments Swift SDK.
+- Swift plugin (`ZohoPaymentsPlugin`) bridging the same `zoho_payments` MethodChannel — Dart API unchanged.
+- iOS setup instructions in README (Swift Package Manager dependency on `https://github.com/zoho/zpayments-ios-sdk`).
+
 ## 0.2.6 - 2026-01-01
 
 ### Added
