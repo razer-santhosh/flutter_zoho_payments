@@ -54,3 +54,14 @@ example/.pub/
 .DS_Store
 .idea
 .vscode
+
+# iOS / CocoaPods
+ios/.symlinks/
+ios/Pods/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/Generated.xcconfig
+**/ios/Runner/GeneratedPluginRegistrant.*
+example/ios/Pods/
+example/ios/.symlinks/

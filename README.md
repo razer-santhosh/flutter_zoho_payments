@@ -33,7 +33,7 @@ A Flutter plugin for integrating Zoho Payments SDK into your Flutter application
 | Platform | Status |
 |----------|--------|
 | Android  | ✅ Supported (Min SDK 26) |
-| iOS      | 🚧 Coming Soon |
+| iOS      | ✅ Supported (iOS 15+) |
 | Web      | ❌ Not Supported |
 
 ## Installation
@@ -42,7 +42,7 @@ Add `flutter_zoho_payments` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_zoho_payments: ^0.2.6
+  flutter_zoho_payments: ^0.3.0
 ```
 
 ## Setup
@@ -84,6 +84,32 @@ allprojects {
 ```
 
 3. The plugin automatically includes the required permissions for internet access.
+
+### iOS Setup
+
+The Zoho Payments iOS SDK is distributed via **Swift Package Manager** and must be added once to your app's `Runner` target (this Flutter plugin cannot pull SPM packages on your behalf).
+
+1. Set the iOS deployment target to **15.0 or higher** in `ios/Podfile`:
+
+```ruby
+platform :ios, '15.0'
+```
+
+2. Open `ios/Runner.xcworkspace` in Xcode.
+
+3. Select the **Runner** project → **Package Dependencies** → **+** and add:
+
+```
+https://github.com/zoho/zpayments-ios-sdk
+```
+
+   Use exact version `1.0.2` (or the latest version recommended by Zoho).
+
+4. Add the `ZohoPayments` library product to the **Runner** target.
+
+5. Run `flutter pub get` and then `cd ios && pod install`.
+
+That's it — the plugin's Swift code links against `ZohoPayments` automatically once SPM resolves it in the workspace. No `Info.plist` entries are required for the basic checkout flow.
 
 ### Backend Setup
 
@@ -316,9 +342,10 @@ Always test thoroughly in sandbox before switching to live environment.
 
 ## Limitations
 
-- Currently supports Android only (iOS support coming soon)
 - Payment UI customization is limited to Zoho's provided options
 - Requires minimum Android SDK 26 (Android 8.0)
+- Requires minimum iOS 15.0
+- iOS native SDK ships via Swift Package Manager and must be added once to the host app's `Runner` target (see iOS Setup)
 - **Sandbox Environment Payment Limit**: Zoho Payments sandbox environment currently supports transactions only up to ₹500 (INR). This limit is enforced by Zoho and may change in the future. For testing larger amounts, you'll need to use the production environment with real payment credentials.
 
 ## Contributing

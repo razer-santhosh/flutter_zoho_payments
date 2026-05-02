@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.zoho.com)",
+      "WebSearch",
+      "Bash(ls example/ example/ios/)",
+      "Bash(ls example/ios/Runner/)",
+      "Bash(flutter analyze *)",
+      "Bash(flutter --version)",
+      "Bash(/mnt/c/Flutter_SDK_Latest/bin/flutter.bat analyze *)",
+      "Bash(cmd.exe /c \"C:\\\\\\\\Flutter_SDK_Latest\\\\\\\\bin\\\\\\\\flutter.bat analyze\")",
+      "Bash(cmd.exe /c \"C:\\\\\\\\Flutter_SDK_Latest\\\\\\\\bin\\\\\\\\flutter.bat test\")",
+      "Bash(cmd.exe /c \"C:\\\\\\\\Flutter_SDK_Latest\\\\\\\\bin\\\\\\\\flutter.bat pub publish --dry-run\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
+    ]
+  }
+}
